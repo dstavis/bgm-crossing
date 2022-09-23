@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, NavLink  } from 'react-router-dom';
 // import { Howl, Howler } from 'howler';
 // Components
@@ -11,21 +11,12 @@ import { getSongs } from './api-calls';
 function App() {
 
   const load = "";
-
   const [time, setTime] = useState(new Date())
   const [hour, setHour] = useState(null)
   const [song, setSong] = useState(null)
 
   const changeHour = () => {
     setHour("07")
-  }
-
-  const timeStuff = () => { 
-    setTime(new Date())
-    // let newHour = time.getHours()
-    // if(newHour !== hour) {
-    //   setHour(newHour)
-    // }
   }
 
   useEffect( () => {
@@ -35,7 +26,18 @@ function App() {
   }, [load])
 
   useEffect( () => {
+    const timeStuff = () => { 
+      setTime(new Date())
+      let newHour = time.getHours()
+      if(newHour !== hour) {
+        setHour(newHour)
+      }
+    }
     setInterval( timeStuff, 1000 )
+    return () => {}
+  }, [load])
+
+  useEffect( () => {
   })
 
   useEffect( () => {
