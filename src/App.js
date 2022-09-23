@@ -10,7 +10,6 @@ import { getSongs } from './api-calls';
 
 function App() {
 
-  const load = "";
   const [time, setTime] = useState(new Date())
   const [hour, setHour] = useState(null)
   const [song, setSong] = useState(null)
@@ -26,22 +25,21 @@ function App() {
     }
     getSongs().then((data) => { setSong(data[`BGM_24Hour_${firstHour}_Sunny`])})
     return () => {}
-  }, [load])
+  }, [])
 
   useEffect( () => {
     const timeStuff = async () => { 
       await setTime(new Date())
       let newHour = time.getHours()
+      console.log({newHour, hour}) // hour doesn't change?!?!?!?!?!?!
       if(newHour !== hour) {
         setHour(newHour)
       }
     }
-    setInterval( timeStuff, 1000 )
+    const prom = setInterval( timeStuff, 1000 )
+    console.log("setInterval GO", prom.toString())
     return () => {}
-  }, [load])
-
-  useEffect( () => {
-  })
+  }, [])
 
   useEffect( () => {
     let firstHour = hour && hour.toString()
@@ -49,6 +47,7 @@ function App() {
       firstHour = "0" + firstHour
     }
     console.log({firstHour})
+
     getSongs().then((data) => { setSong(data[`BGM_24Hour_${firstHour}_Sunny`])} )
   }, [hour])
 
