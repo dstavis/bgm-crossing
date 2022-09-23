@@ -21,13 +21,16 @@ function App() {
 
   useEffect( () => {
     let firstHour = new Date().getHours()
-    getSongs().then((data) => { return setSong(data[`BGM_24Hour_${firstHour}_Sunny`])})
+    if(firstHour && firstHour.length < 2) {
+      firstHour = "0" + firstHour
+    }
+    getSongs().then((data) => { setSong(data[`BGM_24Hour_${firstHour}_Sunny`])})
     return () => {}
   }, [load])
 
   useEffect( () => {
-    const timeStuff = () => { 
-      setTime(new Date())
+    const timeStuff = async () => { 
+      await setTime(new Date())
       let newHour = time.getHours()
       if(newHour !== hour) {
         setHour(newHour)
@@ -41,7 +44,12 @@ function App() {
   })
 
   useEffect( () => {
-    getSongs().then((data) => { return setSong(data[`BGM_24Hour_${hour}_Sunny`])})
+    let firstHour = hour && hour.toString()
+    if(firstHour && firstHour.length < 2) {
+      firstHour = "0" + firstHour
+    }
+    console.log({firstHour})
+    getSongs().then((data) => { setSong(data[`BGM_24Hour_${firstHour}_Sunny`])} )
   }, [hour])
 
   return (
@@ -51,8 +59,8 @@ function App() {
       </header>
       <main>
         <nav>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/favorites">My Collection</NavLink>
+          {/* <NavLink to="/">Home</NavLink>
+          <NavLink to="/favorites">My Collection</NavLink> */}
         </nav>
         <p>
           {time.toLocaleTimeString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true})}

@@ -5,7 +5,7 @@ function Player({url}) {
 
   return (
     <>
-      <h2>Player</h2>
+      {/* <h2>Player</h2> */}
       {url && <audio src={url} controls loop autoPlay={true}></audio>}
     </>
   )

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Fink Heavy";
+  src: url("../assets/FinkHeavy.ttf");
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -15,4 +20,18 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.App {
+  background-image: url("../assets/bg2.jpeg");
+  height: 100vh;
+  text-align: center;
+}
+
+main, nav, a, h1, h2, h3, audio, p {
+  padding: 2vh;
+}
+
+h1 {
+  font-family: "Fink Heavy";
 }
