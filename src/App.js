@@ -1,78 +1,89 @@
 import './App.css';
-import React, { useState, useEffect, useCallback } from 'react';
-import { Routes, Route, NavLink  } from 'react-router-dom';
-// import { Howl, Howler } from 'howler';
-// Components
-import Home from "./components/Home"
-import Favorites from "./components/Favorites"
 import { getSongs } from './api-calls';
+// Dependencies
+import React, { useState, useEffect} from 'react';
+import { Routes, Route, NavLink  } from 'react-router-dom';
+// Components
+import Clock from "./components/Clock"
+import SavedList from "./components/SavedList"
+import Player from './components/Player';
 
 
 function App() {
 
-  const [time, setTime] = useState(new Date())
-  const [hour, setHour] = useState(null)
-  const [song, setSong] = useState(null)
+  const [useRealTime, setUseRealTime] = useState(true)
+  const [hour, setHour] = useState(new Date().getHours())
+  const [selectedHour, setSelectedHour] = useState("realTime")
+  const [song, setSong] = useState(null) // as URL
 
-  const changeHour = () => {
-    setHour("07")
+  useEffect(() => {
+    console.log({song})
+  })
+
+  useEffect( () => {
+    changeSong(hour)
+  }, [])
+
+  useEffect(() => {
+    if(useRealTime) {
+      changeSong(hour)
+    }
+  }, [hour])
+
+  useEffect(() => {
+    if(!useRealTime) {
+      changeSong(selectedHour)
+    } else {
+      changeSong(hour)
+    }
+  }, [selectedHour])
+
+  const changeSong = (hourInput) => {
+    const hourString = String(hourInput)
+    let outputString = hourString;
+    if(hourString && String(hourString).length < 2) {
+      outputString = "0" + hourString
+    }
+    getSongs().then((data) => { setSong(data[`BGM_24Hour_${outputString}_Sunny`]["music_uri"])} )
   }
 
-  useEffect( () => {
-    let firstHour = new Date().getHours()
-    if(firstHour && firstHour.length < 2) {
-      firstHour = "0" + firstHour
-    }
-    getSongs().then((data) => { setSong(data[`BGM_24Hour_${firstHour}_Sunny`])})
-    return () => {}
-  }, [])
+  const changeHour = (number) => {
+    setHour(number)
+  }
 
-  useEffect( () => {
-    const timeStuff = async () => { 
-      await setTime(new Date())
-      let newHour = time.getHours()
-      console.log({newHour, hour}) // hour doesn't change?!?!?!?!?!?!
-      if(newHour !== hour) {
-        setHour(newHour)
-      }
+  const changeSelectedHour = (event) => {
+    const value = event.target.value
+    if(value === "realTime") {
+      setUseRealTime(true)
+      setSelectedHour(value)
+    } else {
+      setUseRealTime(false)
+      setSelectedHour(Number(value))
     }
-    const prom = setInterval( timeStuff, 1000 )
-    console.log("setInterval GO", prom.toString())
-    return () => {}
-  }, [])
+  }
 
-  useEffect( () => {
-    let firstHour = hour && hour.toString()
-    if(firstHour && firstHour.length < 2) {
-      firstHour = "0" + firstHour
-    }
-    console.log({firstHour})
-
-    getSongs().then((data) => { setSong(data[`BGM_24Hour_${firstHour}_Sunny`])} )
-  }, [hour])
 
   return (
     <div className="App">
-      <header>
-        <h1>BGM Crossing</h1>
-      </header>
-      <main>
-        <nav>
-          {/* <NavLink to="/">Home</NavLink>
-          <NavLink to="/favorites">My Collection</NavLink> */}
-        </nav>
-        <p>
-          {time.toLocaleTimeString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true})}
-        </p>
-        <button onClick={changeHour}>Change Hour</button>
+      <div className="wrapper">
+        <header>
+          <h1>BGM Crossing</h1>
+        </header>
+        <main>
+          <nav>
+            <NavLink to="/">Clock</NavLink>
+            {/* <NavLink to="/saved">Saved</NavLink> */}
+          </nav>
 
-        <Routes>
-          <Route path="/" element={<Home song={song}/>}>
-          </Route>
-          <Route path="/favorites" element={<Favorites />}>
-          </Route>
-        </Routes>
-      </main>
+          <Routes>
+            <Route path="/" element={<Clock hour={hour} selectedHour={selectedHour} changeSelectedHour={changeSelectedHour} />}>
+            </Route>
+            {/* <Route path="/saved" element={<SavedList />}>
+            </Route> */}
+          </Routes>
+        </main>
+        <Player url={song && song}/>
+      </div>
     </div>
   );
 }

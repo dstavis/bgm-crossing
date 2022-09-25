@@ -1,13 +1,19 @@
 import React from 'react';
-// import { Howl, Howler } from 'howler';
 
-function Player({url}) {
+function Player(props) {
 
   return (
-    <>
-      {/* <h2>Player</h2> */}
-      {url && <audio src={url} controls loop autoPlay={true}></audio>}
-    </>
+    <footer>
+      <div className="current-song">
+        <span>Currently playing: {props["file-name"]}</span>
+      </div>
+      <div className="playButton">
+        {props.url && <audio src={props.url} controls loop autoPlay={true}></audio>}
+      </div>
+      <div className="volumeControl">
+
+      </div>
+    </footer>
   )
 }
 

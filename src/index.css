@@ -35,3 +35,15 @@ main, nav, a, h1, h2, h3, audio, p {
 h1 {
   font-family: "Fink Heavy";
 }
+
+.wrapper {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+footer {
+  background-color: white;
+  border-top: 1px black solid;
+  /* height: 10vh; */
+}
