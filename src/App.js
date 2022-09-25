@@ -40,15 +40,10 @@ function App() {
 
   const changeSong = (hourInput) => {
     const hourString = String(hourInput)
-    let outputString = hourString;
-    if(hourString && String(hourString).length < 2) {
-      outputString = "0" + hourString
+    if(hourString && hourString.length < 2) {
+      hourString = "0" + hourString
     }
-    getSongs().then((data) => { setSong(data[`BGM_24Hour_${outputString}_Sunny`]["music_uri"])} )
-  }
-
-  const changeHour = (number) => {
-    setHour(number)
+    getSongs().then((data) => { setSong(data[`BGM_24Hour_${hourString}_Sunny`]["music_uri"])} )
   }
 
   const changeSelectedHour = (event) => {
