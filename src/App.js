@@ -39,7 +39,7 @@ function App() {
   }, [selectedHour])
 
   const changeSong = (hourInput) => {
-    const hourString = String(hourInput)
+    let hourString = String(hourInput)
     if(hourString && hourString.length < 2) {
       hourString = "0" + hourString
     }
