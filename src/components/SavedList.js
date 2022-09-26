@@ -4,9 +4,9 @@ function SavedList(props) {
   const {savedSongs} = props;
   const [songComponents, setSongComponents] = useState([])
 
-  useEffect(() => {
-    // console.log({songComponents})
-  }, [songComponents])
+  // useEffect(() => {
+  //   // console.log({songComponents})
+  // }, [songComponents])
 
   useEffect(() => {
     
@@ -17,7 +17,7 @@ function SavedList(props) {
         </p>)
       } )
 
-      return ( [...previousState, newComponent] )
+      return ( newComponent )
     })
   }, [savedSongs])
 
