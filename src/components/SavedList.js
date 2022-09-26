@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { FaPlayCircle, FaPlusSquare, FaMinusSquare } from "react-icons/fa"
+import SavedSong from "./SavedSong"
 
 function SavedList(props) {
-  const {savedSongs} = props;
+  const {savedSongs, removeSong} = props;
   const [songComponents, setSongComponents] = useState([])
 
   // useEffect(() => {
@@ -12,9 +14,7 @@ function SavedList(props) {
     
     setSongComponents((previousState) => {
       let newComponent = savedSongs.map( (song) => {
-        return (<p>
-          {song.name}
-        </p>)
+        return (<SavedSong songName={song.name} removeSong={removeSong}/>)
       } )
 
       return ( newComponent )

@@ -70,6 +70,19 @@ function App() {
     })
   }
 
+  const removeSong = (song) => {
+    setSavedSongs( (previousState) => {
+      let newState = Array.from(previousState)
+      let foundIndex = newState.findIndex( (item) => {
+        return item.name === song.name
+      })
+      if(foundIndex !== -1) {
+        newState.splice(foundIndex, 1)
+      }
+      return newState
+    })
+  }
+
   return (
     <div className="App">
       <div className="wrapper">
@@ -84,10 +97,10 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Clock hour={hour} selectedHour={selectedHour} changeSelectedHour={changeSelectedHour} />}/>
-            <Route path="/saved" element={<SavedList savedSongs={savedSongs} />}/>
+            <Route path="/saved" element={<SavedList savedSongs={savedSongs} removeSong={removeSong} />}/>
           </Routes>
         </main>
-        <Player url={song && song} songName={songName} savedSongs={savedSongs} saveSong={saveSong}/>
+        <Player url={song && song} songName={songName} savedSongs={savedSongs} saveSong={saveSong} removeSong={removeSong}/>
       </div>
     </div>
   );
