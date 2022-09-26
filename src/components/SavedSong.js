@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import { FaPlayCircle, FaMinusSquare } from "react-icons/fa"
 
 function SavedSong(props) {
@@ -23,3 +24,10 @@ function SavedSong(props) {
 }
 
 export default SavedSong
+
+SavedSong.propTypes = {
+  songName: PropTypes.string,
+  songHour: PropTypes.number,
+  removeSong: PropTypes.func,
+  changeSelectedHour: PropTypes.func
+} 

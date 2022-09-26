@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import { useEffect, useState } from "react";
 import SavedSong from "./SavedSong"
 
@@ -25,3 +26,9 @@ function SavedList(props) {
 }
 
 export default SavedList
+
+SavedList.propTypes = {
+  savedSongs: PropTypes.array,
+  removeSong: PropTypes.func,
+  changeSelectedHour: PropTypes.func
+} 

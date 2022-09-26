@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from "prop-types"
 import RemoveButton from './RemoveButton'
 import SaveButton from './SaveButton';
 
@@ -31,3 +32,12 @@ function Player(props) {
 }
 
 export default Player
+
+Player.propTypes = {
+  songName: PropTypes.string,
+  songHour: PropTypes.number,
+  url: PropTypes.string,
+  savedSongs: PropTypes.array,
+  saveSong: PropTypes.func,
+  removeSong: PropTypes.func
+} 

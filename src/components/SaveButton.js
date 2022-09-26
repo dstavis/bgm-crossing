@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import { FaPlusSquare } from "react-icons/fa"
 
 const SaveButton = (props) => {
@@ -15,3 +16,10 @@ const SaveButton = (props) => {
 }
 
 export default SaveButton
+
+SaveButton.propTypes = {
+  songName: PropTypes.string,
+  songHour: PropTypes.number,
+  url: PropTypes.string,
+  saveSong: PropTypes.func
+} 

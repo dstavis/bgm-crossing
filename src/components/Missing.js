@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-const Missing = (props) => {
+const Missing = () => {
 
   return (
     <>

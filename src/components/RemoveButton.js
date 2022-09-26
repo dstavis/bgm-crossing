@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import { FaMinusSquare } from "react-icons/fa";
 
 const RemoveButton = (props) => {
@@ -15,3 +16,8 @@ const RemoveButton = (props) => {
 };
 
 export default RemoveButton;
+
+RemoveButton.propTypes = {
+  songName: PropTypes.string,
+  saveSong: PropTypes.func
+} 

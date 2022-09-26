@@ -1,4 +1,5 @@
 import {translateHourNumberToString} from "../utility"
+import PropTypes from "prop-types"
 
 function Clock(props) {
   const {hour, selectedHour, changeSelectedHour} = props
@@ -26,3 +27,9 @@ function Clock(props) {
 }
 
 export default Clock
+
+Clock.propTypes = {
+  hour: PropTypes.number,
+  selectedHour: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  changeSelectedHour: PropTypes.func
+} 
