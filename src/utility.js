@@ -17,3 +17,20 @@ const translateHourNumberToString = (hourNumber) => {
 }
 
 export {translateHourNumberToString}
+
+
+
+
+
+// let newComponents = savedSongs.reduce( (components, song) => {
+//   let newComponent = (<p>
+//     {song.name}
+//   </p>)
+//   if (!components.includes(newComponent)) {
+//     return components + newComponent
+//   } else {
+//     console.log({components})
+//     return components
+//   }
+// }, [])
+// return newComponents

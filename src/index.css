@@ -35,6 +35,9 @@ main, nav, a, h1, h2, h3, audio, p {
   padding: 2vh;
 }
 
+main{
+}
+
 a {
   color: white;
   text-decoration: none;
@@ -52,18 +55,18 @@ a.active {
 h1 {
   color: white;
   text-shadow: -1px 1px 2px #000,
-    1px 1px 2px #000,
-    1px -1px 2px #000,
-    -1px -1px 2px #000;
+  1px 1px 2px #000,
+  1px -1px 2px #000,
+  -1px -1px 2px #000;
 }
 
 a, h2, h3, p {
   color: white;
 	/* font-size: 40px; */
 	text-shadow: -1px 1px 0px #000,
-    1px 1px 0px #000,
-    1px -1px 0 #000,
-    -1px -1px 0 #000;
+  1px 1px 0px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
 }
 
 h1 {
@@ -74,6 +77,13 @@ h1 {
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
+}
+.saved-songs{
+  overflow: hidden;
+}
+
+.save-button {
+  margin-left: 10px;
 }
 
 footer {

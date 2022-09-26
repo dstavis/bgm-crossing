@@ -7,6 +7,7 @@ import { Routes, Route, NavLink  } from 'react-router-dom';
 import Clock from "./components/Clock"
 import SavedList from "./components/SavedList"
 import Player from './components/Player';
+import { translateHourNumberToString } from './utility';
 
 
 function App() {
@@ -14,11 +15,13 @@ function App() {
   const [useRealTime, setUseRealTime] = useState(true)
   const [hour, setHour] = useState(new Date().getHours())
   const [selectedHour, setSelectedHour] = useState("realTime")
-  const [song, setSong] = useState(null) // as URL
+  const [song, setSong] = useState(null) // as URL string
+  const [songName, setSongName] = useState(null) // as string
+  const [savedSongs, setSavedSongs] = useState([])
 
-  useEffect(() => {
-    console.log({song})
-  })
+  // useEffect( () => {
+  //   console.log(savedSongs)
+  // })
 
   useEffect( () => {
     changeSong(hour)
@@ -43,7 +46,11 @@ function App() {
     if(hourString && hourString.length < 2) {
       hourString = "0" + hourString
     }
-    getSongs().then((data) => { setSong(data[`BGM_24Hour_${hourString}_Sunny`]["music_uri"])} )
+    getSongs().then((data) => { 
+      setSong(data[`BGM_24Hour_${hourString}_Sunny`]["music_uri"])
+      const hourOfSong = data[`BGM_24Hour_${hourString}_Sunny`]["hour"]
+      setSongName(translateHourNumberToString(hourOfSong))
+    } )
   }
 
   const changeSelectedHour = (event) => {
@@ -55,6 +62,12 @@ function App() {
       setUseRealTime(false)
       setSelectedHour(Number(value))
     }
+  }
+
+  const saveSong = (song) => {
+    setSavedSongs( (previousState) => {
+      return [...previousState, song]
+    })
   }
 
   return (
@@ -71,10 +84,10 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Clock hour={hour} selectedHour={selectedHour} changeSelectedHour={changeSelectedHour} />}/>
-            <Route path="/saved" element={<SavedList />}/>
+            <Route path="/saved" element={<SavedList savedSongs={savedSongs} />}/>
           </Routes>
         </main>
-        <Player url={song && song}/>
+        <Player url={song && song} songName={songName} savedSongs={savedSongs} saveSong={saveSong}/>
       </div>
     </div>
   );
