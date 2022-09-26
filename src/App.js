@@ -1,12 +1,12 @@
-import './App.css';
 import { getSongs } from './api-calls';
 // Dependencies
 import React, { useState, useEffect} from 'react';
-import { Routes, Route, NavLink  } from 'react-router-dom';
+import { Routes, Route, Link, NavLink } from 'react-router-dom';
 // Components
 import Clock from './components/Clock';
 import SavedList from './components/SavedList';
 import Player from './components/Player';
+import Missing from './components/Missing';
 import { translateHourNumberToString } from './utility';
 
 
@@ -86,7 +86,9 @@ function App() {
     <div className="App">
       <div className="wrapper">
         <header>
-          <h1>BGM Crossing</h1>
+            <h1 className="logo">
+                BGM Crossing
+            </h1>
         </header>
         <main>
           <nav>
@@ -97,6 +99,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Clock hour={hour} selectedHour={selectedHour} changeSelectedHour={changeSelectedHour} />}/>
             <Route path="/saved" element={<SavedList savedSongs={savedSongs} removeSong={removeSong} changeSelectedHour={changeSelectedHour} />}/>
+            <Route path="/:garbage" element={<Missing/>}/>
           </Routes>
         </main>
         <Player songName={songName} songHour={useRealTime ? hour : selectedHour} url={song && song} savedSongs={savedSongs} saveSong={saveSong} removeSong={removeSong}/>

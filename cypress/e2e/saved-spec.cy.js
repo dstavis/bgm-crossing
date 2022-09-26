@@ -7,6 +7,7 @@ describe('saved list', () => {
   })
 
   it('can visit the saved route', () => {
+    cy.wait(1500)
     cy.visit('localhost:3000/')
     cy.get('[href="/saved"]').click()
     cy.url().should("contain", "/saved")
