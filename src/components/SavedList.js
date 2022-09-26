@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import SavedSong from "./SavedSong"
 
 function SavedList(props) {
-  const {savedSongs, removeSong, changeSong} = props;
+  const {savedSongs, removeSong, changeSelectedHour} = props;
   const [songComponents, setSongComponents] = useState([])
 
   useEffect(() => {
     
     setSongComponents((previousState) => {
       let newComponent = savedSongs.map( (song) => {
-        return (<SavedSong songName={song.name} songHour={song.hour} removeSong={removeSong} changeSong={changeSong} />)
+        return (<SavedSong songName={song.name} songHour={song.hour} removeSong={removeSong} changeSelectedHour={changeSelectedHour} />)
       } )
 
       return ( newComponent )

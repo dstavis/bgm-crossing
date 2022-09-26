@@ -53,8 +53,7 @@ function App() {
     } )
   }
 
-  const changeSelectedHour = (event) => {
-    const value = event.target.value
+  const changeSelectedHour = (value) => {
     if(value === "realTime") {
       setUseRealTime(true)
       setSelectedHour(value)
@@ -97,7 +96,7 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Clock hour={hour} selectedHour={selectedHour} changeSelectedHour={changeSelectedHour} />}/>
-            <Route path="/saved" element={<SavedList savedSongs={savedSongs} removeSong={removeSong} changeSong={changeSong} />}/>
+            <Route path="/saved" element={<SavedList savedSongs={savedSongs} removeSong={removeSong} changeSelectedHour={changeSelectedHour} />}/>
           </Routes>
         </main>
         <Player songName={songName} songHour={useRealTime ? hour : selectedHour} url={song && song} savedSongs={savedSongs} saveSong={saveSong} removeSong={removeSong}/>

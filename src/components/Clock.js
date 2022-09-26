@@ -16,7 +16,7 @@ function Clock(props) {
       <p>
         {translateHourNumberToString(hour)}
       </p>
-      <select name="hours" id="hour-select" value={selectedHour} onChange={changeSelectedHour}>
+      <select name="hours" id="hour-select" value={selectedHour} onChange={(event) => changeSelectedHour(event.target.value)}>
         <option value="realTime">Real Time</option>
         {hourOptions}
       </select>

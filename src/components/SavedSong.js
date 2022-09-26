@@ -1,14 +1,14 @@
 import { FaPlayCircle, FaMinusSquare } from "react-icons/fa"
 
 function SavedSong(props) {
-  const {songName, songHour, removeSong, changeSong} = props;
+  const {songName, songHour, removeSong, changeSelectedHour} = props;
   
   const removeSongCallback = () => {
     removeSong({name: songName})
   }
 
   const playSavedSongCallback = () => {
-    changeSong(songHour)
+    changeSelectedHour(songHour)
   }
 
   return (
