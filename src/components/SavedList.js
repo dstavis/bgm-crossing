@@ -11,7 +11,7 @@ function SavedList(props) {
 
   useEffect(() => {
     
-    setSongComponents((previousState) => {
+    setSongComponents(() => {
       let newComponent = savedSongs.map( (song) => {
         return (<SavedSong key={song.hour} songName={song.name} songHour={song.hour} removeSong={removeSong} changeSelectedHour={changeSelectedHour} />)
       } )
