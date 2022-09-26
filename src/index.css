@@ -129,8 +129,12 @@ footer {
 }
 
 @media screen and (max-width: 600px) {
+  .App {
+    height: 85vh;
+  }
+  
   .wrapper {
-    min-height: 90vh;
+    min-height: 85vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
   }
