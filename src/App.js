@@ -57,7 +57,6 @@ function App() {
     }
   }
 
-
   return (
     <div className="App">
       <div className="wrapper">
@@ -66,15 +65,13 @@ function App() {
         </header>
         <main>
           <nav>
-            <NavLink to="/">Clock</NavLink>
-            {/* <NavLink to="/saved">Saved</NavLink> */}
+            <NavLink to="/" end>Clock</NavLink>
+            <NavLink to="/saved">Saved</NavLink>
           </nav>
 
           <Routes>
-            <Route path="/" element={<Clock hour={hour} selectedHour={selectedHour} changeSelectedHour={changeSelectedHour} />}>
-            </Route>
-            {/* <Route path="/saved" element={<SavedList />}>
-            </Route> */}
+            <Route path="/" element={<Clock hour={hour} selectedHour={selectedHour} changeSelectedHour={changeSelectedHour} />}/>
+            <Route path="/saved" element={<SavedList />}/>
           </Routes>
         </main>
         <Player url={song && song}/>
