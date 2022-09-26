@@ -14,7 +14,6 @@ function Clock(props) {
     <>
       <h3>Current Time</h3>
       <p>
-        {/* {time.toLocaleTimeString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true})} */}
         {translateHourNumberToString(hour)}
       </p>
       <select name="hours" id="hour-select" value={selectedHour} onChange={changeSelectedHour}>

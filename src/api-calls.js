@@ -9,9 +9,4 @@ async function getSongs() {
   }
 }
 
-// const getSongs = () => {
-//   return fetch(allSongsURL)
-//     .then(response => response.json())
-// }
-
 export {getSongs}

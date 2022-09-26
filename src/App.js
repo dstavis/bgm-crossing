@@ -97,10 +97,10 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Clock hour={hour} selectedHour={selectedHour} changeSelectedHour={changeSelectedHour} />}/>
-            <Route path="/saved" element={<SavedList savedSongs={savedSongs} removeSong={removeSong} />}/>
+            <Route path="/saved" element={<SavedList savedSongs={savedSongs} removeSong={removeSong} changeSong={changeSong} />}/>
           </Routes>
         </main>
-        <Player url={song && song} songName={songName} savedSongs={savedSongs} saveSong={saveSong} removeSong={removeSong}/>
+        <Player songName={songName} songHour={useRealTime ? hour : selectedHour} url={song && song} savedSongs={savedSongs} saveSong={saveSong} removeSong={removeSong}/>
       </div>
     </div>
   );
