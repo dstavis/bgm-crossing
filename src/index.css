@@ -35,9 +35,6 @@ main, nav, a, h1, h2, h3, audio, p, .saved-song-name {
   padding: 2vh;
 }
 
-main{
-}
-
 a {
   color: white;
   text-decoration: none;
@@ -69,6 +66,10 @@ a, h2, h3, p, .saved-song-name {
   -1px -1px 0 #000;
 }
 
+small {
+  font-size: 0.7em;
+}
+
 h1 {
   font-family: "Fink Heavy";
 }
@@ -78,6 +79,7 @@ h1 {
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
+
 .saved-songs{
   overflow: hidden;
 }
@@ -110,6 +112,20 @@ footer {
   border-top: 1px black solid;
   padding-top: 10px;
   box-sizing: border-box;
+}
+
+.current-time-heading {
+  padding-top: 5vh;
+  padding-bottom: 0;
+}
+
+.current-time {
+  padding: 0;
+}
+
+.time-travel-heading {
+  padding: 0;
+  padding-top: 10vh;
 }
 
 @media screen and (max-width: 600px) {

@@ -4,8 +4,8 @@ import { getSongs } from './api-calls';
 import React, { useState, useEffect} from 'react';
 import { Routes, Route, NavLink  } from 'react-router-dom';
 // Components
-import Clock from "./components/Clock"
-import SavedList from "./components/SavedList"
+import Clock from './components/Clock';
+import SavedList from './components/SavedList';
 import Player from './components/Player';
 import { translateHourNumberToString } from './utility';
 

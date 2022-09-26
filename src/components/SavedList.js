@@ -9,7 +9,7 @@ function SavedList(props) {
     
     setSongComponents((previousState) => {
       let newComponent = savedSongs.map( (song) => {
-        return (<SavedSong songName={song.name} songHour={song.hour} removeSong={removeSong} changeSelectedHour={changeSelectedHour} />)
+        return (<SavedSong key={song.hour} songName={song.name} songHour={song.hour} removeSong={removeSong} changeSelectedHour={changeSelectedHour} />)
       } )
 
       return ( newComponent )

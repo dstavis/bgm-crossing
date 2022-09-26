@@ -7,20 +7,21 @@ function Clock(props) {
   
   const hourOptions = hourNumbers.map((hourNumber) => {
     const hourString = translateHourNumberToString(hourNumber)
-    return (<option value={hourNumber}>{hourString}</option>)
+    return (<option key={hourNumber} value={hourNumber}>{hourString}</option>)
   })
   
   return (
-    <>
-      <h3>Current Time</h3>
-      <p>
+    <section className="clock">
+      <h3 className="current-time-heading">Current Time</h3>
+      <p className="current-time">
         {translateHourNumberToString(hour)}
       </p>
-      <select name="hours" id="hour-select" value={selectedHour} onChange={(event) => changeSelectedHour(event.target.value)}>
+      <h3 className="time-travel-heading"><small>(time travel...?)</small></h3>
+      <select className="hour-select" name="hours" id="hour-select" value={selectedHour} onChange={(event) => changeSelectedHour(event.target.value)}>
         <option value="realTime">Real Time</option>
         {hourOptions}
       </select>
-    </>
+    </section>
   )
 }
 
