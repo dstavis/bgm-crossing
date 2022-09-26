@@ -94,6 +94,16 @@ button {
   box-sizing: border-box;
 }
 
+button:hover {
+  cursor: pointer;
+  color:#ffd050;
+}
+
+footer button:hover {
+  cursor: pointer;
+  color:#b17840;
+}
+
 button:active {
   color: grey;
 }
