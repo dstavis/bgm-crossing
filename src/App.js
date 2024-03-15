@@ -46,11 +46,8 @@ function App() {
     if(hourString && hourString.length < 2) {
       hourString = "0" + hourString
     }
-    getSongs().then((data) => { 
-      setSong(data[`BGM_24Hour_${hourString}_Sunny`]["music_uri"])
-      const hourOfSong = data[`BGM_24Hour_${hourString}_Sunny`]["hour"]
-      setSongName(translateHourNumberToString(hourOfSong))
-    } )
+    setSong(`/music/BGM_24Hour_${hourString}_Sunny.mp3`)
+    setSongName(translateHourNumberToString(hourString))
   }
 
   const changeSelectedHour = (value) => {
